@@ -9,7 +9,6 @@ public class Info {
     String title;
     String content;
     Date datetime;
-    Calendar calendar;
 
     public Info(int id, String title, String content, Date datetime){
         this.id = id;
