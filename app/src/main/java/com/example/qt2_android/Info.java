@@ -1,6 +1,7 @@
 package com.example.qt2_android;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Info {
@@ -8,6 +9,7 @@ public class Info {
     String title;
     String content;
     Date datetime;
+    Calendar calendar;
 
     public Info(int id, String title, String content, Date datetime){
         this.id = id;
