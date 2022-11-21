@@ -1,6 +1,7 @@
 package com.example.qt2_android;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Info {

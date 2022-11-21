@@ -36,12 +36,9 @@ public class MainActivity extends AppCompatActivity {
         listViewinfo.setAdapter((ListAdapter) proInfoListViewAdapter);
 
 
-        listViewinfo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Info item = (Info) ((ListAdapter) proInfoListViewAdapter).getItem(i);
-                Toast.makeText(MainActivity.this, item.title, Toast.LENGTH_LONG).show();
-            }
+        listViewinfo.setOnItemClickListener((adapterView, view, i, l) -> {
+            Info item = (Info) ((ListAdapter) proInfoListViewAdapter).getItem(i);
+            Toast.makeText(MainActivity.this, item.title, Toast.LENGTH_LONG).show();
         });
     }
 }
