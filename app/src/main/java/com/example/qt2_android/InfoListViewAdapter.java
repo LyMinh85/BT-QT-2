@@ -43,4 +43,8 @@ public class InfoListViewAdapter extends BaseAdapter {
         date.setText(item.getDateFormat());
         return view;
     }
+
+    public void add(Info note_new) {
+        infoArrayList.add(note_new);
+    }
 }
