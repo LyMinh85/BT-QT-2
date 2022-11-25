@@ -1,4 +1,4 @@
-package com.example.easytutonotes;
+package com.example.multinotes;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.multinotes.R;
 import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -48,7 +49,5 @@ public class MainActivity extends AppCompatActivity {
                 myAdapter.notifyDataSetChanged();
             }
         });
-
-
     }
 }

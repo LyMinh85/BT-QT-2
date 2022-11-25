@@ -1,6 +1,7 @@
-package com.example.easytutonotes;
+package com.example.multinotes;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,12 +10,13 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.text.DateFormat;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.multinotes.R;
+
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -39,6 +41,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         Note note = notesList.get(position);
         holder.titleOutput.setText(note.getTitle());
         holder.descriptionOutput.setText(note.getDescription());
+
+        holder.itemView.setOnClickListener((v)->{
+            Intent intent = new Intent(context, AddNoteActivity.class);
+            intent.putExtra("tittle", note.title);
+            intent.putExtra("description", note.description);
+            String dodID = String.valueOf(this.getItemId(position));
+            intent.putExtra("dodID",dodID);
+            context.startActivity(intent);
+        });
 
         String formatedTime = DateFormat.getDateTimeInstance().format(note.getCreatedTime());
         holder.timeOutput.setText(formatedTime);
@@ -68,7 +79,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 return true;
             }
         });
-
     }
 
     @Override
