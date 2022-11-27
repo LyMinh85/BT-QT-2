@@ -25,11 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
         MaterialButton addNoteBtn = findViewById(R.id.addnewnotebtn);
 
-        addNoteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,AddNoteActivity.class));
-            }
+        addNoteBtn.setOnClickListener(view -> {
+            startActivity(new Intent(MainActivity.this, AddNoteActivity.class));
         });
 
         Realm.init(getApplicationContext());
@@ -43,11 +40,6 @@ public class MainActivity extends AppCompatActivity {
         MyAdapter myAdapter = new MyAdapter(getApplicationContext(),notesList);
         recyclerView.setAdapter(myAdapter);
 
-        notesList.addChangeListener(new RealmChangeListener<RealmResults<Note>>() {
-            @Override
-            public void onChange(RealmResults<Note> notes) {
-                myAdapter.notifyDataSetChanged();
-            }
-        });
+        notesList.addChangeListener(notes -> myAdapter.notifyDataSetChanged());
     }
 }

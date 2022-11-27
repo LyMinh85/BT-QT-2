@@ -33,7 +33,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_view,parent,false));
+        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_view, parent, false));
     }
 
     @Override
@@ -44,40 +44,33 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         holder.itemView.setOnClickListener((v)->{
             Intent intent = new Intent(context, AddNoteActivity.class);
+            intent.putExtra("id", note.id);
             intent.putExtra("tittle", note.title);
             intent.putExtra("description", note.description);
-            String dodID = String.valueOf(this.getItemId(position));
-            intent.putExtra("dodID",dodID);
             context.startActivity(intent);
         });
 
-        String formatedTime = DateFormat.getDateTimeInstance().format(note.getCreatedTime());
-        holder.timeOutput.setText(formatedTime);
+        String formattedTime = DateFormat.getDateTimeInstance().format(note.getCreatedTime());
+        holder.timeOutput.setText(formattedTime);
 
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
+        holder.itemView.setOnLongClickListener(view -> {
 
-                PopupMenu menu = new PopupMenu(context,v);
-                menu.getMenu().add("DELETE");
-                menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        if(item.getTitle().equals("DELETE")){
-                            //delete the note
-                            Realm realm = Realm.getDefaultInstance();
-                            realm.beginTransaction();
-                            note.deleteFromRealm();
-                            realm.commitTransaction();
-                            Toast.makeText(context,"Note deleted",Toast.LENGTH_SHORT).show();
-                        }
-                        return true;
-                    }
-                });
-                menu.show();
-
+            PopupMenu menu = new PopupMenu(context,view);
+            menu.getMenu().add("Delete");
+            menu.setOnMenuItemClickListener(item -> {
+                if(item.getTitle().equals("Delete")){
+                    //delete the note
+                    Realm realm = Realm.getDefaultInstance();
+                    realm.beginTransaction();
+                    note.deleteFromRealm();
+                    realm.commitTransaction();
+                    Toast.makeText(context,"Note deleted",Toast.LENGTH_SHORT).show();
+                }
                 return true;
-            }
+            });
+            menu.show();
+
+            return true;
         });
     }
 
@@ -86,7 +79,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return notesList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView titleOutput;
         TextView descriptionOutput;
