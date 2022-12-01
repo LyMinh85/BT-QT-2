@@ -1,6 +1,9 @@
 package com.example.multinotes;
 
 
+import java.util.Calendar;
+import java.util.Date;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -9,6 +12,7 @@ public class Note extends RealmObject {
     String title;
     String description;
     long createdTime;
+    Date reminder;
 
     public String getId() {
         return id;
@@ -40,5 +44,13 @@ public class Note extends RealmObject {
 
     public void setCreatedTime(long createdTime) {
         this.createdTime = createdTime;
+    }
+
+    public Date getReminder() {
+        return reminder;
+    }
+
+    public void setReminder(Date reminder) {
+        this.reminder = reminder;
     }
 }
