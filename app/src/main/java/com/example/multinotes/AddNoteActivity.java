@@ -59,11 +59,15 @@ public class AddNoteActivity extends AppCompatActivity {
             note = new Note();
             note.setTitle("");
             note.setDescription("");
+            note.setReminder(null);
             isEditMode = false;
         }
 
         titleInput.setText(note.title);
         descriptionInput.setText(note.description);
+        if (note.getReminder() != null) {
+            titlePickTime.setText(note.getReminderString());
+        }
 
         if (isEditMode){
             titleTextView.setText("Edit note");
@@ -113,7 +117,6 @@ public class AddNoteActivity extends AppCompatActivity {
             intent.putExtra("title", note.getTitle());
             intent.putExtra("description", note.getDescription());
             intent.putExtra("position", position);
-            Log.d("IDK", String.valueOf(position));
             PendingIntent pendingIntent = PendingIntent.getBroadcast(AddNoteActivity.this, 0, intent, 0);
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
             Calendar calendar = Calendar.getInstance();

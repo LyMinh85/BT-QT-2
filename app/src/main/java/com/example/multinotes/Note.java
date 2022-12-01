@@ -50,6 +50,12 @@ public class Note extends RealmObject {
         return reminder;
     }
 
+    public String getReminderString() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(reminder);
+        return calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
+    }
+
     public void setReminder(Date reminder) {
         this.reminder = reminder;
     }
