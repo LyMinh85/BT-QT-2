@@ -46,6 +46,30 @@
             android:lines="10"
             android:gravity="top"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+
+            android:orientation="horizontal">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_pick_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#00B0FF"
+                android:backgroundTint="@color/white"
+                android:text="Chọn thời gian"/>
+
+            <TextView
+                android:id="@+id/text_pick_time"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="23sp"
+                android:gravity="center"
+                android:background="#3000B0FF"/>
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
